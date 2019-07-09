@@ -1,0 +1,52 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'DFOVNTodo' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  #use_frameworks!
+  # Pods for DFOVNTodo
+  pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'Core',
+    'CxxBridge',
+    'DevSupport',
+    'RCTActionSheet',
+    'RCTAnimation',
+    'RCTBlob',
+    'RCTCameraRoll',
+    'RCTImage',
+    'RCTNetwork',
+    'RCTPushNotification',
+    'RCTSettings',
+    'RCTText',
+    'RCTVibration',
+    'RCTWebSocket',
+    'RCTLinkingIOS',
+    'RCTGeolocation'
+    ]
+    pod 'IQKeyboardManager'
+    pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+    pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+    pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
+    pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+    pod 'Firebase/Core', '~> 6.3.0'
+    pod 'Firebase/Firestore', '~> 6.3.0'
+    
+  target 'DFOVNTodoTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'DFOVNTodo-tvOS' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for DFOVNTodo-tvOS
+
+  target 'DFOVNTodo-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

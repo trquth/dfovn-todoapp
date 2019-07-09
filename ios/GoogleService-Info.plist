@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>576433638285-ihn67j5789dldtir8vgub30om9imcnjg.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.576433638285-ihn67j5789dldtir8vgub30om9imcnjg</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCN70A2XBOM2JUTUCPJDjfUi234OCh-rtw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>576433638285</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.DFOVNTodo</string>
+	<key>PROJECT_ID</key>
+	<string>dfovntodo</string>
+	<key>STORAGE_BUCKET</key>
+	<string>dfovntodo.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:576433638285:ios:3266a78d8a1c27f1</string>
+	<key>DATABASE_URL</key>
+	<string>https://dfovntodo.firebaseio.com</string>
+</dict>
+</plist>
