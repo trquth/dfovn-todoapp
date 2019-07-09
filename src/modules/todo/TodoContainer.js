@@ -9,7 +9,7 @@
 import React, {Component} from 'react';
 import {
   Platform, StyleSheet, Text,
-  ScrollView, View, TextInput, Button, FlatList
+  ScrollView, View, TextInput, Button, FlatList, TouchableOpacity
 } from 'react-native';
 import firebase from 'react-native-firebase';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
@@ -26,10 +26,8 @@ export default class TodoContainer extends Component {
     };
   }
 
-  static navigationOptions = ({navigation, navigationOptions}) => {
-    return {
-      headerTitle: <NavBar />
-    }
+  static navigationOptions = {
+    title: "Todo App"
   }
 
   updateTextInput(value) {
@@ -49,38 +47,64 @@ export default class TodoContainer extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[{flex: 1}, {marginLeft: 10, marginRight: 10, marginTop: 10}]}>
         <TextInput
-          style={{width: '100%', backgroundColor: Colors.grayLight, height: 50, }}
+          style={{width: '100%', backgroundColor: Colors.grayLight, height: 50, borderRadius: 5}}
           placeholder={'Add TODO'}
           value={this.state.textInput}
           onChangeText={(text) => this.updateTextInput(text)}
         />
+        <View style={{
+          height: 60, flexDirection: "row",
+          alignItems: "center",
+        }}>
+          <Icon name="filter" size={35} color={Colors.grayLight} style={{marginRight: 15, }} />
+          <View style={{flex: 1, flexDirection: 'row', justifyContent: "space-between", }}>
+            <TouchableOpacity style={{
+              backgroundColor: Colors.green,
+              height: 35, width: 70, justifyContent: "center",
+              borderRadius: 5
+            }} onPress={() => {}}>
+              <Text style={{textAlign: "center"}}>All</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{
+              backgroundColor: Colors.green,
+              height: 35, width: 70, justifyContent: "center",
+              borderRadius: 5
+            }} onPress={() => {}}>
+              <Text style={{textAlign: "center"}}>Done</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{
+              backgroundColor: Colors.green,
+              height: 35, width: 70, justifyContent: "center",
+              borderRadius: 5
+            }} onPress={() => {}}>
+              <Text style={{textAlign: "center"}}>Active</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
         <FlatList
+          style={{flex: 1}}
           data={[{key: 'a'}, {key: 'b'}]}
-          renderItem={({item}) => <Text>{item.key}</Text>}
+          renderItem={({item}) => <View style={{
+            height: 70, flexDirection: 'row',
+            width: "100%",
+            alignItems: 'center',
+            justifyContent: "center"
+          }}>
+            <TouchableOpacity style={{
+            }} onPress={() => {}}>
+              <Icon name="check-square" size={35} color={Colors.grayLight} />
+            </TouchableOpacity>
+            <Text style={{flex: 1, marginLeft: 5, marginRight: 5}}>xxxx salfjl afl sjjalf asfj lsjj   </Text>
+            <TouchableOpacity
+              onPress={() => {}}>
+              <Icon name="window-close" size={35} color={Colors.red} />
+            </TouchableOpacity>
+          </View>}
+          ItemSeparatorComponent={() => <View style={{height: 1, backgroundColor: Colors.grayLight}} />}
         />
-        <Icon name="rocket" size={30} color="#900" />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.white,
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});

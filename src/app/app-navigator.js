@@ -8,23 +8,34 @@ import {
 
 import Todo from '../modules/todo/TodoContainer';
 import SideBar from '../modules/sidebar/SideBarContainer';
+import {Colors, FontNames} from '../themes';
 
 const {width} = Dimensions.get('window')
 
 const mainDrawerOptions = {
-   
+
 }
 
 export const MainStack = createStackNavigator({
     ["FirstScreen"]: {
         screen: Todo,
-        navigationOptions :{
+        navigationOptions: {
         }
     },
 }, {
         initialRouteName: "FirstScreen",
+        defaultNavigationOptions: {
+            headerTintColor: '#fff',
+            headerStyle: {
+                backgroundColor: Colors.orangeLight,
+            },
+            headerTitleStyle: {
+                fontFamily: FontNames.RobotoBold,
+                fontSize: 30, color: Colors.white, textAlign: 'center'
+            }
+        },
         navigationOptions: {
-            headerForceInset: { top: 'never', bottom: 'never' }
+            headerForceInset: {top: 'never', bottom: 'never'}
         }
     })
 
@@ -53,8 +64,8 @@ const routeAppConfiguration = {
 
 const stackAppConfiguration = {
     initialRouteName: "MainDrawer",
-    navigationOptions:{
-      
+    navigationOptions: {
+
     }
 }
 
