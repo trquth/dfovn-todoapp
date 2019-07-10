@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "576433638285",
+    "firebase_url": "https://dfovntodo.firebaseio.com",
+    "project_id": "dfovntodo",
+    "storage_bucket": "dfovntodo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576433638285:android:eb72e343cb41e9a5",
+        "android_client_info": {
+          "package_name": "com.dfovntodo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576433638285-2ukp1grgp8he26fqc5tk4npm9n9ebsbs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dfovntodo",
+            "certificate_hash": "86246682342a928f8954258fd2ad6435713b39fd"
+          }
+        },
+        {
+          "client_id": "576433638285-4sqht8271kg8ef2a2mpmhmeodi5ffoq3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAceAEEghOrqQixKpPO7V0PpepUf7XHgxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576433638285-4sqht8271kg8ef2a2mpmhmeodi5ffoq3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "576433638285-ihn67j5789dldtir8vgub30om9imcnjg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.DFOVNTodo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
