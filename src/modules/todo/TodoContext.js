@@ -1,23 +1,25 @@
-import React, { Component, createContext } from 'react';
+import React, {Component, createContext} from 'react';
 import {
-  Text,
-  View, TextInput, TouchableOpacity, Alert
+  Alert
 } from 'react-native';
 import {
   addNote, updateNote,
-  noteStatus, deleteNote,
-  getAllNotes
+  deleteNote,
+  getAllNotes, filterNoteByStatus, noteStatus
 } from './TodoAction';
-import { ListNotes } from './views/ListNotes';
-import { Button, CustomizeTextInput } from '../common';
 
 const TodoContext = createContext({
   data: [],
-  deleteNote: () => { },
-  changeStatus: () => { },
+  deleteNote: () => {},
+  changeStatus: () => {},
   textInput: "",
-  updateTextInput: () => { },
-  addTodo: () => { }
+  updateTextInput: () => {},
+  addTodo: () => {},
+  isLoading: false,
+  upateIsLoading: () => {},
+  selectedStatus: '',
+  onSelectedStatus: () => {},
+  toggleAction: () => {}
 });
 
 export class TodoProvider extends Component {
@@ -31,7 +33,12 @@ export class TodoProvider extends Component {
       changeStatus: this.changeNoteStatus,
       textInput: "",
       updateTextInput: this.updateTextInput,
-      addTodo: this.addTodo
+      addTodo: this.addTodo,
+      isLoading: false,
+      upateIsLoading: this.upateIsLoading,
+      selectedStatus: '',
+      onSelectedStatus: this.onSelectedStatus,
+      toggleAction: this.toggleAction
     };
 
   }
@@ -40,8 +47,9 @@ export class TodoProvider extends Component {
     this.unsubscribe = getAllNotes().onSnapshot((querySnapshot) => {
       let data = [];
       console.log('querySnapshot', querySnapshot)
+      this.onSelectedStatus('')
       querySnapshot.forEach((doc) => {
-        const { content, status } = doc.data();
+        const {content, status} = doc.data();
         data.push({
           key: doc.id,
           content: content || "",
@@ -53,8 +61,14 @@ export class TodoProvider extends Component {
         data: data,
       });
     })
+  }
 
-
+  filterData = (status) => {
+    if (status === "") {
+      return getAllNotes()
+    } else {
+      return filterNoteByStatus(status)
+    }
   }
 
   componentWillUnmount() {
@@ -62,7 +76,7 @@ export class TodoProvider extends Component {
   }
 
   updateTextInput = (value) => {
-    this.setState({ textInput: value });
+    this.setState({textInput: value});
   }
 
   addTodo = (text) => {
@@ -70,22 +84,81 @@ export class TodoProvider extends Component {
   }
 
   changeNoteStatus = (id, status) => {
-    updateNote(id, status)
+    this.upateIsLoading(true)
+    updateNote(id, status).then(() => {this.upateIsLoading(false)}).catch(() => {
+      this.upateIsLoading(false)
+      Alert.alert(
+        'UPDATE STATUS FAIL',
+        'Update note status fail. Please try again',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      );
+    })
   }
 
   deleteNote = (id) => {
+    this.upateIsLoading(true)
     deleteNote(id).then(() => {
-      console.log('DELETE SUCCESS')
+      this.upateIsLoading(false)
+
     }).catch(() => {
+      this.upateIsLoading(false)
       Alert.alert(
         'DELETE FAIL',
         'Delete note fail. Please try again',
         [
-          { text: 'OK', onPress: () => console.log('OK Pressed') },
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
         ],
-        { cancelable: false },
+        {cancelable: false},
       );
     })
+  }
+
+  upateIsLoading = (status) => {
+    this.setState({isLoading: status})
+  }
+
+  getDataFromQuerySnapShot = (querySnapshot) => {
+    let data = [];
+    console.log('get querySnapshot', querySnapshot)
+    querySnapshot.forEach((doc) => {
+      const {content, status} = doc.data();
+      data.push({
+        key: doc.id,
+        content: content || "",
+        status: status || "",
+      });
+    });
+
+    this.setState({
+      data: data,
+    });
+    this.upateIsLoading(false)
+  }
+
+  onSelectedStatus = (status) => {
+    this.upateIsLoading(true)
+    this.setState({selectedStatus: status})
+    this.filterData(status).get().then(this.getDataFromQuerySnapShot)
+      .catch(err => {
+        this.upateIsLoading(false)
+        console.log('ERROR', err)
+      })
+  }
+
+  toggleAction = () => {
+    if (this.state.selectedStatus === "") return
+    this.upateIsLoading(true)
+    let status = this.state.selectedStatus === noteStatus.done ? noteStatus.active : noteStatus.done
+    this.setState({selectedStatus: status})
+    this.filterData(status).get().then(this.getDataFromQuerySnapShot)
+      .catch(err => {
+        this.upateIsLoading(false)
+        this.setState({selectedStatus: ''})
+        console.log('ERROR', err)
+      })
   }
 
   render() {

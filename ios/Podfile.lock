@@ -102,6 +102,8 @@ PODS:
   - Protobuf (3.8.0)
   - React (0.59.10):
     - React/Core (= 0.59.10)
+  - react-native-spinkit (1.0.2):
+    - React
   - React/Core (0.59.10):
     - yoga (= 0.59.10.React)
   - React/CxxBridge (0.59.10):
@@ -173,6 +175,7 @@ DEPENDENCIES:
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - IQKeyboardManager
+  - react-native-spinkit (from `../node_modules/react-native-spinkit`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
@@ -221,6 +224,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
     :path: "../node_modules/react-native"
+  react-native-spinkit:
+    :path: "../node_modules/react-native-spinkit"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNVectorIcons:
@@ -249,10 +254,11 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 3f617b9a6e73605565086864c9bc26b2bf2dd5a3
   React: 36d0768f9e93be2473b37e7fa64f92c1d5341eef
+  react-native-spinkit: 9a5d2f95aa975d5660fd3e76b7eac38e7329e46c
   RNGestureHandler: 5329a942fce3d41c68b84c2c2276ce06a696d8b0
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   yoga: 684513b14b03201579ba3cee20218c9d1298b0cc
 
-PODFILE CHECKSUM: b94b73fb28229335d799f2db753c6e7af05eb21e
+PODFILE CHECKSUM: 77d9d16ae9d233897135b1e66977b8d4d61412bc
 
 COCOAPODS: 1.7.2

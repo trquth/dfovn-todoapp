@@ -10,6 +10,7 @@ export const addNote = (content) => {
   ref.add({
     content: content,
     status: noteStatus.active,
+    createDate: new Date()
   });
 }
 
@@ -20,12 +21,12 @@ export const updateNote = (id, currentStatus) => {
       const doc = await transaction.get(ref.doc(id));
 
       if (!doc.exists) {
-        return Promise.reject("Doc don't exist")
+        return Promise.reject("Doc doesn't exist")
       }
 
-      ref.doc(id).update({
-        status: currentStatus === noteStatus.active ? noteStatus.done : noteStatus.active,
-      });
+      transaction.update(ref.doc(id), {
+        status: currentStatus === noteStatus.active ? noteStatus.done : noteStatus.active
+      })
       return doc
     })
 }
@@ -37,20 +38,18 @@ export const deleteNote = (id) => {
       const doc = await transaction.get(ref.doc(id));
 
       if (!doc.exists) {
-        return Promise.reject("Doc don't exist")
+        return Promise.reject("Doc doesn't exist")
       }
-      ref.doc(id).delete();
+      transaction.delete(ref.doc(id));
       return doc
     })
 }
 
 export const filterNoteByStatus = (status) => {
-  ref.where('status', '==', status).onSnapshot((querySnapshot) => {
-    console.log('querySnapshot', querySnapshot)
-  })
+  return ref.where('status', '==', status)
 }
 
 export const getAllNotes = () => {
-  return ref
+  return ref.orderBy('createDate', 'desc')
 }
 
