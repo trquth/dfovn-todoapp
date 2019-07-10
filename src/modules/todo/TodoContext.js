@@ -3,8 +3,6 @@ import {
   Text,
   View, TextInput, TouchableOpacity, Alert
 } from 'react-native';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import { Colors } from '../../themes';
 import {
   addNote, updateNote,
   noteStatus, deleteNote,
@@ -16,7 +14,10 @@ import { Button, CustomizeTextInput } from '../common';
 const TodoContext = createContext({
   data: [],
   deleteNote: () => { },
-  changeStatus: () => { }
+  changeStatus: () => { },
+  textInput: "",
+  updateTextInput: () => { },
+  addTodo: () => { }
 });
 
 export class TodoProvider extends Component {
@@ -27,7 +28,10 @@ export class TodoProvider extends Component {
     this.state = {
       data: [],
       deleteNote: this.deleteNote,
-      changeStatus: this.changeNoteStatus
+      changeStatus: this.changeNoteStatus,
+      textInput: "",
+      updateTextInput: this.updateTextInput,
+      addTodo: this.addTodo
     };
 
   }
@@ -55,6 +59,14 @@ export class TodoProvider extends Component {
 
   componentWillUnmount() {
     this.unsubscribe = null
+  }
+
+  updateTextInput = (value) => {
+    this.setState({ textInput: value });
+  }
+
+  addTodo = (text) => {
+    addNote(text)
   }
 
   changeNoteStatus = (id, status) => {
