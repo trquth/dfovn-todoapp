@@ -1,7 +1,7 @@
 
 import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
-import {Colors} from '../../themes';
+import {Colors, FontNames} from '../../themes';
 
 export const Button = (props) => {
   let {title, isHightligth, action, color} = props
@@ -13,7 +13,8 @@ export const Button = (props) => {
     <Text style={{
       textAlign: "center",
       color:  !color ? (isHightligth ? Colors.white : Colors.black) : Colors.white,
-      fontSize: 15
+      fontSize: 15,
+      fontFamily: FontNames.RobotoRegular
     }}>{title}</Text>
   </TouchableOpacity>
 }

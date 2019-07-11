@@ -8,11 +8,8 @@
 
 import React, {Component} from 'react';
 import {
-  Platform, StyleSheet, Text,
-  ScrollView, View, TextInput, Button
-} from 'react-native';
-import firebase from 'react-native-firebase';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+  StyleSheet, View} from 'react-native';
+import { Colors } from '../../themes';
 
 export default class SideBarContainer extends Component {
 
@@ -38,8 +35,7 @@ export default class SideBarContainer extends Component {
 
   render() {
     return (
-      <View style={[styles.container,{backgroundColor:'red'}]}>
-       
+      <View style={[styles.container,{backgroundColor: Colors.white}]}>
       </View>
     );
   }

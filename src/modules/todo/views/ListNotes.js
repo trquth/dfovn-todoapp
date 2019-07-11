@@ -1,13 +1,13 @@
 
 import React, {useState, useEffect} from 'react'
-import {TextInput, FlatList, View, Text, Animated, StyleSheet} from 'react-native'
+import {FlatList, View, Text, Animated, StyleSheet} from 'react-native'
 import {CheckBox, ButtonWithIcon, BreakLine} from '../../common'
 import {get} from 'lodash'
 import {TodoConsumer} from '../TodoContext';
 import {noteStatus} from '../TodoAction';
 import {CustomizeTextInput, Button} from "../../common"
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import {Colors} from '../../../themes';
+import {Colors, FontNames} from '../../../themes';
 import {Loading} from '../../common/Loading';
 
 const ANIMATION_DURATION = 250;
@@ -56,7 +56,7 @@ export const Note = (props) => {
       >
         <CheckBox isChecked={data.status === noteStatus.done ? true : false}
           action={() => {changeStatus && changeStatus(data.key, data.status)}} />
-        <Text style={{flex: 1, marginLeft: 5, marginRight: 5}}>{get(data, 'content', '')}</Text>
+        <Text style={{flex: 1,fontSize:20, fontFamily:FontNames.RobotoRegular, marginLeft: 5, marginRight: 5}} numberOfLines={1}>{get(data, 'content', '')}</Text>
         <ButtonWithIcon iconName="window-close"
           action={() => {
             deleteNote && deleteNote(data.key)
@@ -96,7 +96,7 @@ export const ListNotes = () => {
           <FlatList
             style={{flex: 1}}
             data={data}
-            keyExtractor={(item, index) => item.key}
+            keyExtractor={(item) => item.key}
             renderItem={({item}) => <Note data={item} />}
             ItemSeparatorComponent={() => <BreakLine />}
             ListEmptyComponent={<View><Text style={{textAlign: 'center'}}>No note. Add new note</Text></View>}
